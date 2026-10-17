@@ -58,3 +58,7 @@ python -m unittest discover -s tests -v
 ## Practical relevance
 
 The case shows how to make agent recommendations reviewable before a financial action. Production work would require identity and permission checks, durable approval records, duplicate-payment protection, an idempotent payment service, security testing, and measured extraction calibration. The routing prototype has no capability to transfer funds.
+
+## Reuse
+
+The original contributions listed in [LICENSING.md](LICENSING.md) are available under [MIT](LICENSE). This scoped grant preserves upstream notices and separate dataset, simulator, notebook and checkpoint terms.
