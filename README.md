@@ -6,17 +6,24 @@ An expense workflow can turn an incorrect receipt extraction into an incorrect r
 
 ## Design
 
-```mermaid
-flowchart LR
-  R[Receipt and claim] --> E[Extract structured fields]
-  E --> V[Validate fields and receipt type]
-  V -->|Unverified| I[Request information]
-  V --> P[Deterministic totals and policy checks]
-  P -->|Noncompliant| X[Reject with reasons]
-  P -->|Over review threshold| H[Human review]
-  P -->|Within threshold| A[Approval authorization]
-  H --> A
-  A --> G[Separate payment authorization gate]
+![Implementation mechanism: Expense cents and confidence → Request information for unverified inputs → Apply rejection rules → Above 50000 cents requires human review → Return recommendation without payment execution](assets/mechanism.svg)
+
+## Try a small example
+
+A small offline fixture exercises the public implementation. It demonstrates the behavior shown below; it does not replace the historical dataset, benchmark or production validation.
+
+After the local setup below, run from the repository root:
+
+```sh
+python examples/quickstart.py
+```
+
+The [example source](examples/quickstart.py), [captured output](examples/expected-output.txt) and [execution record](examples/environment.json) keep this demonstration inspectable. Floating-point values may vary with library versions.
+
+Observed output from this run:
+
+```text
+{'at_threshold': 'eligible_for_approval', 'over_threshold': 'human_review', 'allocation': (34, 33, 33), 'monthly_cost': '620.00'}
 ```
 
 The design adds an illustrative 85% field-confidence threshold and a human-review gate for reports above $500. These are policy assumptions requiring calibration and organizational approval. Reviewers can approve, reject, request evidence, or partially approve line items. Payment authorization must remain a separate enforced service boundary.

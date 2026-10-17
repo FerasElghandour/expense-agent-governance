@@ -1,0 +1,1 @@
+{'at_threshold': 'eligible_for_approval', 'over_threshold': 'human_review', 'allocation': (34, 33, 33), 'monthly_cost': '620.00'}
