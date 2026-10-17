@@ -8,6 +8,15 @@ An expense workflow can turn an incorrect receipt extraction into an incorrect r
 
 ![Implementation mechanism: Expense cents and confidence → Request information for unverified inputs → Apply rejection rules → Above 50000 cents requires human review → Return recommendation without payment execution](assets/mechanism.svg)
 
+
+
+## Reproduce and inspect
+
+The executable reproduction profile now records exact commands, input/source hashes, dependency versions, logs and pass/fail status. Its scope distinguishes behavior checks from full-data benchmarks.
+
+[Commands, artifacts and benchmark scope](BENCHMARKS.md) · [Versioned profiles](reproduction.json)
+
+
 ## Try a small example
 
 A small offline fixture exercises the public implementation. It demonstrates the behavior shown below; it does not replace the historical dataset, benchmark or production validation.
